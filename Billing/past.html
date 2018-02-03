@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>last10</title>
+	<title>past.html</title>
 	<script type="text/javascript" src="js/jquery-1.12.2.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -11,7 +11,18 @@
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
-	<h1>近十筆支出</h1>
+	<h1>支出查詢</h1>
+	<p>
+		<input type="radio" name="date" value="thisMonth">本月份
+	</p>
+	<p>
+		<input type="radio" name="date" value="period">指定期間
+	</p>
+	<p>
+		<input type="date" id="dateFirst">	-	<input type="date" id="dateLast">
+	</p>
+	<button class="btn btn-primary" id="search" onclick="searchExpences()">查詢</button><hr>
+	<h2>支出細項</h2>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -24,5 +35,14 @@
 			
 		</tbody>
 	</table>
+	
+
+
+
+
+
+
+
+
 </body>
 </html>
