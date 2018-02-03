@@ -13,19 +13,19 @@
 <body>
 	<h1>支出查詢</h1>
 	<p>
-		<input type="radio" name="date" value="thisMonth">本月份
+		<input type="radio" name="date" class="date" value="thisMonth" checked="true">本月份
 	</p>
 	<p>
-		<input type="radio" name="date" value="period">指定期間
+		<input type="radio" name="date" class="date" value="period">指定期間
 	</p>
 	<p>
-		<input type="date" id="dateFirst">	-	<input type="date" id="dateLast">
+		<input type="date" id="dateFirst" >	-	<input type="date" id="dateLast" >
 	</p>
 	<button class="btn btn-primary" id="search" onclick="searchExpences()">查詢</button><hr>
 	<h2>支出細項</h2>
 	<table class="table table-striped">
 		<thead>
-			<tr>
+			<tr class="success">
 				<td>日期</td><br>
 				<td>項目</td><br>
 				<td>金額</td><br>
@@ -35,6 +35,20 @@
 			
 		</tbody>
 	</table>
+	<h2>分類統計</h2>
+	<table class="table table-striped">
+		<thead>
+			<tr class="success">
+				<td>類別</td><br>
+				<td>金額</td><br>
+				<td>比例</td><br>
+			</tr>
+		</thead>
+		<tbody id="category-tbody">
+			
+		</tbody>
+	</table>
+	<p id="txtSum">
 	
 
 

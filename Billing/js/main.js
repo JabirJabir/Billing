@@ -2,12 +2,13 @@ var fdb = new ForerunnerDB();
 var db = fdb.db("items");
 var accountingItem = db.collection("items");
 
-accountingItem.load();
+// accountingItem.load(dataLoad);
 
 function searchExpences() {
 	console.log(accountingItem.find());
 	var gte = "";
 	var lte = "";
+
 	if ($("[name=date]:checked").val() == "thisMonth") {
 		var date = new Date();
 		var year = date.getUTCFullYear();
@@ -21,24 +22,35 @@ function searchExpences() {
 		}
 		console.log(gte);
 		console.log(lte);
-		
-		var search = accountingItem.find({
-    	date : {
-        	$gte : gte,
-        	$lte : lte
-		}
-		});
-		console.log(search);
-		updateTable(search);
 	}else{
-		
+		gte = $("#dateFirst").val();		
+		lte = $("#dateLast").val();
 	}
-	
+	if (gte !=""||lte !="") {
+		var search = accountingItem.find({
+	    	date : {
+	        	$gte : gte,
+	        	$lte : lte
+			}
+		});
+	}		
+	console.log(search);
+	updateTable(search);
 }
 
 $(document).ready(function(){
 	accountingItem.load(dataLoad);
-})
+	// $("[name=date]").change(function () {
+	// 	// console.log(this.value);
+	// 	if(this.value == "thisMonth"){
+	// 		$("[name=date]").prop("readOnly", true);
+	// 		console.log("thisMonth");
+	// 	}else{
+	// 		$("[name=date]").prop("readOnly", false);
+	// 		console.log("period");
+	// 	}
+	// });
+});
 
 function dataLoad() {
 	var items = accountingItem.find(
@@ -46,11 +58,12 @@ function dataLoad() {
 					{$orderBy:{date:-1},$limit:10}
 				);
 	updateTable(items);
+	console.log(items);
 }
 
 function updateTable(items){
 	$("#table-tbody").find("tr").remove();
-	for (var i = 0;i < items.ledngth; i++) {
+	for (var i = 0;i < items.length; i++) {
 		$("#table-tbody").append(
 			"<tr>" +
 			"<td>" + items[i].date + "</td>" +
@@ -74,6 +87,3 @@ function submit() {
     $("#cost").val("");
     alert("成功!");
 }
-
-
-
